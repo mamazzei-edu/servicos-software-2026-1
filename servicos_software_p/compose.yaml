@@ -14,8 +14,6 @@ services:
       dockerfile: Dockerfile 
     ports:
       - 7860:7860
-    volumes:
-      - /work
 
   backend-json:
     build:
@@ -23,8 +21,6 @@ services:
       dockerfile: Dockerfile 
     ports:
       - 8080:8080
-    volumes:
-      - /code
 
   gradio-visao:
     build:
@@ -34,6 +30,9 @@ services:
       - "7861:7861"
     depends_on:
       - api-visao
+    restart: always
+    deploy:
+      replicas: 3
 
   api-visao:
     build:
