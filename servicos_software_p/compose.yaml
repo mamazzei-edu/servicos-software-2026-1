@@ -9,6 +9,7 @@
 # https://github.com/docker/awesome-compose
 services:
   gradio-service:
+    image: mamazzei/gradio-json
     build:
       context: gradio-json
       dockerfile: Dockerfile 
@@ -16,6 +17,7 @@ services:
       - 7860:7860
 
   backend-json:
+    image: mamazzei/backend-json
     build:
       context: backend-json
       dockerfile: Dockerfile 
@@ -23,6 +25,7 @@ services:
       - 8080:8080
 
   gradio-visao:
+    image: mamazzei/gradio-visao
     build:
       context: gradio-visao
       dockerfile: Dockerfile
@@ -35,6 +38,7 @@ services:
       replicas: 3
 
   api-visao:
+    image: mamazzei/api-visao:v1.0
     build:
       context: api-visao
       dockerfile: Dockerfile
@@ -44,6 +48,7 @@ services:
       - api-armazenamento
 
   api-armazenamento:
+    image: mamazzei/api-armazenamento:v1.0
     build:
       context: api-armazenamento
       dockerfile: Dockerfile
