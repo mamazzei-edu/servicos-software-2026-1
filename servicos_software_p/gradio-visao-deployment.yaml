@@ -26,4 +26,9 @@ spec:
           ports:
             - containerPort: 7861
               protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: 7861
+            initialDelaySeconds: 5
+            periodSeconds: 5
       restartPolicy: Always

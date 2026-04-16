@@ -26,4 +26,16 @@ spec:
           ports:
             - containerPort: 8081
               protocol: TCP
+          readinessProbe:
+              httpGet:
+                  path: /  # Rota que criamos no FastAPI
+                  port: 8081
+              initialDelaySeconds: 15 # Espera 15s antes da primeira tentativa (tempo de baixar o modelo)
+              periodSeconds: 5        # Tenta a cada 5 segundos
+          livenessProbe:
+              httpGet:
+                path: /
+                port: 8081
+              initialDelaySeconds: 30 # Dá uma folga maior antes de decidir matar o container
+              periodSeconds: 10
       restartPolicy: Always
